@@ -1,0 +1,31 @@
+### Método para recupera todos los platos
+GET http://localhost:5000/dishes
+
+### Método para recuperar un plato por ID
+GET http://localhost:5000/dishes/1
+
+### Método para traerte todos los patos de una categoría
+GET http://localhost:5000/dishes/category/Entrantes
+
+### Método para crear un plato nuevo
+POST http://localhost:5000/dishes
+Content-Type: application/json
+
+{
+  "id": 43,
+  "name": "plato de prueba",
+  "description": "descripcion de prueba",
+  "ingredients": [
+    "ingrediente 1",
+    "ingrediente 2"
+  ],
+  "allergens": ["alergenos de prueba"],
+  "image": "url etcetcetc",
+  "price_ars": 10000,
+  "price_usd": 5,
+  "categories": [
+    "categoria 1",
+    "categoria 2",
+    "categoria 3"
+  ]
+}
