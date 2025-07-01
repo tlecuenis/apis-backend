@@ -3,9 +3,11 @@ import dishRouter from './routes/dish.js';
 import authRouter from './routes/auth.js';
 import userRouter from './routes/user.js';
 import { connectDB } from './config/db.js';
+import cors from 'cors'
 
 const app = express();
 app.use(json())
+app.use(cors())
 app.disable('x-powered-by')
 const PORT = process.env.PORT || 5000;
 
