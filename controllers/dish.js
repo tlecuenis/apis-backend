@@ -48,6 +48,8 @@ export class DishController{
     try{
       const { id } = req.params
       const updates = req.body
+      //chequear que no quieran cambiar el id
+      delete updates._id
       const result = await dishService.updateDish(id, updates)
       if(result.success) return res.status(result.status).json(result.data)
       return res.status(result.status).json({error: result.error})
@@ -61,7 +63,8 @@ export class DishController{
   static async deleteByID(req, res){
     try{
       const { id } = req.params
-      const result = await dishService.deleteDishByID(id)
+      const userID = req.user.id
+      const result = await dishService.deleteDishByID(id, userID)
       if(!result.success) return res.status(result.status).json({error: result.error})
       return res.status(result.status).json(result.data)
     }

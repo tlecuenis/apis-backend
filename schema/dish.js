@@ -14,8 +14,7 @@ export const dishSchema = z.object({
       allergens: z.array(z.string()),
       image: z.string({ required_error: 'La imagen es requerida.' }),
       price_ars: z.number().positive().min(1000),
-      price_usd: z.number().positive().min(1) 
-
+      price_usd: z.number().positive().min(1),
 })
 
 export function validateDish (object){

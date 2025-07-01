@@ -31,7 +31,9 @@ export async function createDish(dish){
 }
 
 export async function getAllDishes(filters){
-  const query = {}
+  const query = {
+    deleted: false
+  }
   if (filters.category){
     query.categories = filters.category
   }
@@ -68,13 +70,16 @@ export async function updateDish(id, updates){
 }
 
 
-export async function deleteDishByID(id){
+export async function deleteDishByID(id, userID){
   if (!mongoose.Types.ObjectId.isValid(id)){
     return {success: false, error: 'ID inválido.', status: 400}
   }
 
   try{
-    const deletedDish = await Dish.findByIdAndDelete(id)
+    const deletedDish = await Dish.findByIdAndUpdate(id, {
+      deleted: true,
+      deletedBy: userID
+    }, { new: true })
     if(!deletedDish) return {success: false, error: "Plato no encontrado", status: 404}
     return {success: true, data: deletedDish, status: 200}
   }

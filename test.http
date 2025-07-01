@@ -10,6 +10,7 @@ GET http://localhost:5000/dishes?category=Entrantes
 ### Método para crear un plato nuevo
 POST http://localhost:5000/dishes
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NjQzMDQ4OWQ2ZjgzNzBkZjE2ZDlkZiIsInVzZXJuYW1lIjoicGVkcm8xIiwiaWF0IjoxNzUxNDA3MzEwLCJleHAiOjE3NTE0MTA5MTB9.mE7F3xAhTXRUgUcMWLvvr9_FwS7VNoOzgHtuUo1vLDk
 
 {
   "name": "plato de prueba",
@@ -32,6 +33,8 @@ Content-Type: application/json
 ### Método para actualizar parcialemnte un plato existente
 PATCH http://localhost:5000/dishes/68633dd37a3c60aa9a20f414
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NjQwZTYwMmI5YmUzY2U0MzdmYTQ2NyIsInVzZXJuYW1lIjoiYWRtaW4iLCJpYXQiOjE3NTEzOTE4NjAsImV4cCI6MTc1MTM5NTQ2MH0.3kTtK6f1FobLdkxsxQy6pzJ07t7PnPBGO6rNTPhhFcI
+
 
 {
   "name": "Bruschetta Clásica",
@@ -41,4 +44,49 @@ Content-Type: application/json
 }
 
 ### Método para borrar un plato mediante su ID
-DELETE http://localhost:5000/dishes/68634ae1673542552756009b
+DELETE http://localhost:5000/dishes/686461989e51ae12bacbca7f
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NjQzMDQ4OWQ2ZjgzNzBkZjE2ZDlkZiIsInVzZXJuYW1lIjoicGVkcm8xIiwiaWF0IjoxNzUxNDA3MzEwLCJleHAiOjE3NTE0MTA5MTB9.mE7F3xAhTXRUgUcMWLvvr9_FwS7VNoOzgHtuUo1vLDk
+
+
+
+### Método de login para admin  --->  te devuelve el token que necesitas para las rutas protegidas
+POST http://localhost:5000/auth/login
+Content-Type: application/json
+
+{
+  "username": "Tomás",
+  "password": "admin123"
+}
+
+
+### Método para listar todos los usuarios
+GET http://localhost:5000/users
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NjQwZTYwMmI5YmUzY2U0MzdmYTQ2NyIsInVzZXJuYW1lIjoiYWRtaW4iLCJpYXQiOjE3NTEzOTMwNTIsImV4cCI6MTc1MTM5NjY1Mn0.iog39kO5Xf9L5hk4Ind_1HQsszPYUcIUgjOh58peOk8
+
+
+### Método para crear un usuario
+POST http://localhost:5000/users
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NjQwZTYwMmI5YmUzY2U0MzdmYTQ2NyIsInVzZXJuYW1lIjoiVG9tw6FzIiwiaWF0IjoxNzUxNDEwMjUxLCJleHAiOjE3NTE0MTM4NTF9.M_6xwe3Qj97_zwco9y6FMsNbh1dDnHYfGatSNTPBz08
+Content-Type: application/json
+
+{
+  "username": "admintest",
+  "password": "1234",
+  "email": "admin@gmail.com"
+}
+
+
+### Método para actualizar un usuario
+PATCH http://localhost:5000/users/686430489d6f8370df16d9df
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NjQwZTYwMmI5YmUzY2U0MzdmYTQ2NyIsInVzZXJuYW1lIjoiVG9tw6FzIiwiaWF0IjoxNzUxNDEwMjUxLCJleHAiOjE3NTE0MTM4NTF9.M_6xwe3Qj97_zwco9y6FMsNbh1dDnHYfGatSNTPBz08
+Content-Type: application/json
+
+{
+  "username": "Juan",
+  "password": "123"
+}
+
+
+### Método para borrar un usuario dado su ID
+POST http://localhost:5000/users/686466594f7a3ce2252eab41
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NjQwZTYwMmI5YmUzY2U0MzdmYTQ2NyIsInVzZXJuYW1lIjoiVG9tw6FzIiwiaWF0IjoxNzUxNDEwMjUxLCJleHAiOjE3NTE0MTM4NTF9.M_6xwe3Qj97_zwco9y6FMsNbh1dDnHYfGatSNTPBz08
