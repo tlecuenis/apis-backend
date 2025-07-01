@@ -1,38 +1,14 @@
-import { db } from "../repository/dishes.js";
-import { validateDish } from "../schema/dish.js";
+import mongoose from 'mongoose';
 
-export class dishModel{
+const DishSchema = new mongoose.Schema({
+  name: { type: String, required: true },
+  description: String,
+  ingredients: [String],
+  allergens: [String],
+  image: String,
+  price_ars: Number,
+  price_usd: Number,
+  categories: [String]
+});
 
-  static async getAll(){
-    return db
-  }
-
-  static async getByCategory({ category }){
-    const response = db.filter(dish => dish.categories.includes(category))
-    if (response.length>0) return response
-    return null
-  }
-
-  static async getByID({ id }){
-    const dish = db.find(dish => dish.id == id)
-    if(dish) return dish
-    return null
-  }
-
-  static async createDish(dish){
-      const result = validateDish(dish)
-      if (!result.success) {
-      return {
-        success: false,
-        error: result.error
-      };
-    }
-
-    const newDish = { ...dish }
-    db.push(newDish)
-    return{
-      succes: true,
-      data: newDish
-    }
-  }
-}
+export const Dish = mongoose.model('Dish', DishSchema);

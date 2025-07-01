@@ -2,17 +2,16 @@
 GET http://localhost:5000/dishes
 
 ### Método para recuperar un plato por ID
-GET http://localhost:5000/dishes/1
+GET http://localhost:5000/dishes/6863322acc2416032bce5557
 
 ### Método para traerte todos los patos de una categoría
-GET http://localhost:5000/dishes/category/Entrantes
+GET http://localhost:5000/dishes?category=Entrantes
 
 ### Método para crear un plato nuevo
 POST http://localhost:5000/dishes
 Content-Type: application/json
 
 {
-  "id": 43,
   "name": "plato de prueba",
   "description": "descripcion de prueba",
   "ingredients": [
@@ -29,3 +28,17 @@ Content-Type: application/json
     "categoria 3"
   ]
 }
+
+### Método para actualizar parcialemnte un plato existente
+PATCH http://localhost:5000/dishes/68633dd37a3c60aa9a20f414
+Content-Type: application/json
+
+{
+  "name": "Bruschetta Clásica",
+  "allergens": [
+    "Gluten"
+  ]
+}
+
+### Método para borrar un plato mediante su ID
+DELETE http://localhost:5000/dishes/68634ae1673542552756009b

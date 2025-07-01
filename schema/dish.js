@@ -21,3 +21,9 @@ export const dishSchema = z.object({
 export function validateDish (object){
   return dishSchema.safeParse(object)
 }
+
+const partialDishSchema = dishSchema.partial()
+
+export function validatePartialDish (object){
+  return partialDishSchema.safeParse(object)
+}
