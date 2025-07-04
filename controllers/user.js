@@ -15,6 +15,19 @@ export class userController{
     }
   }
 
+  static async getUserById(req, res){
+    try{
+      const { id } = req.params
+      const result = await userService.getUserById(id)
+      if(!result.success) return res.status(result.status).json({ error: result.error })
+      
+      return res.status(result.status).json(result.data)
+    }
+    catch (error){
+      return res.status(500).json({error: "internal server error"})
+    }
+  }
+
   static async createUser(req, res){
     try{
       const { username, password, email } = req.body

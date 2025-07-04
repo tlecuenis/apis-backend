@@ -21,6 +21,15 @@ export async function userLogIn({ username, password }){
 }
 
 
+export async function getUserById(id){
+  if (!mongoose.Types.ObjectId.isValid(id)){
+    return {success: false, error: 'ID inválido.', status: 400}
+  }
+  const user = await User.findById(id).select('-password -__v')
+  if(!user) return {success: false, error: 'Usuario no encontrado.', status: 404}
+  return {success: true, data: user, status: 200}
+}
+
 export async function createUser({ username, password, email }){
     try{
         const existeUser = await User.findOne({ username })//.select('-password')
@@ -44,7 +53,7 @@ export async function createUser({ username, password, email }){
 //Hacer que no te devuelva la contraseña
 export async function getAllUsers(){
   try{
-    const users = await User.find()
+    const users = await User.find({ deleted: false }).select('-password -__v')
     if(users.lenght <= 0) return {success: false, error: 'No hay usuarios', status: 404}
     return {success: true, data: users, status: 200}
   }
