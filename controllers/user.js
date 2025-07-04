@@ -47,6 +47,8 @@ export class userController{
         const updates = req.body
         //chequear que no quieran cambiar el id
         delete updates._id
+        //ver que no se quiera cambiar el atributo superadmin
+        delete updates.isSuperAdmin
         const result = await userService.updateUser(id, updates)
         if(!result.success) return res.status(result.status).json({ error: result.error })
         return res.status(result.status).json(result.data)
@@ -60,6 +62,11 @@ export class userController{
     try{
       const { id } = req.params
       const userID = req.user.id //Este seria el id del pibe que va a eliminar al usuario, no del usuario eliminado
+      //ver que el usuario que se quiere eliminar no sea el superadmin
+      const userToDelete = await User.findById(id)
+      if(userToDelete.isSuperAdmin) return {success: false, error: "No puede borrarse el administrador principal.", stauts: 400}
+
+      //Si pasó las validaciones, hacemos el update
       const result = await userService.deletedUser(id, userID)
       if(!result.success) return res.status(result.status).json({ error: result.error})
       return res.status(result.status).json(result.data)
