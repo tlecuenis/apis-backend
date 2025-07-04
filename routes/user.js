@@ -6,6 +6,7 @@ import { verifySuperAdmin } from "../middleware/superAdmin.js";
 const userRouter = Router()
 
 userRouter.get("/", verifyToken, userController.getAllUsers)
+userRouter.get("/:id", verifyToken, userController.getUserById)
 userRouter.post("/", verifySuperAdmin, userController.createUser)
 userRouter.patch("/:id", verifySuperAdmin, userController.updateUser)
 userRouter.post("/:id", verifySuperAdmin, userController.deletedUserByID)
